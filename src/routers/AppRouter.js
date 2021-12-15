@@ -11,19 +11,23 @@ import UsersPage from "../pages/admin/UsersPage";
 import NotFoundPage from "../pages/NotFoundPage";
 import Layout from "../components/layouts/Layout";
 import PrivateRoute from "./PrivateRoute";
+import PublicRoute from "./PublicRoute";
+import roles from "../helpers/roles";
+import routes from '../helpers/routes.js'
 
 export default function AppRouter() {
     return (
         <Router>
             <Layout>
                 <Switch>
-                    <Route exact path ="/" component={HomePage} />
-                    <Route exact path ="/login" component={LoginPage} />
-                    <Route exact path ="/register" component={RegisterPage} />
-                    <PrivateRoute exact path ="/account" component={AccountPage} />
-                    <PrivateRoute exact path ="/projects" component={ProjectsPage} />
-                    <PrivateRoute exact path ="/project/:projectId" component={ProjectPage} />
-                    <PrivateRoute exact path ="/admin/users" component={UsersPage} />
+                    <PublicRoute exact path ={routes.home} component={HomePage} />
+                    <PublicRoute exact path ={routes.login} component={LoginPage} />
+                    <PublicRoute exact path ={routes.register} component={RegisterPage} />
+                    <PrivateRoute exact path ={routes.account} component={AccountPage} />
+                    <PrivateRoute exact path ={routes.projects} component={ProjectsPage} />
+                    <PrivateRoute exact path ={routes.project()} component={ProjectPage} />
+                    <PrivateRoute roles= {roles.admin} exact path ={routes.admin.users} component={UsersPage} />
+                    
                     <PrivateRoute path ="*" component={NotFoundPage} />
                 </Switch>
             </Layout>
