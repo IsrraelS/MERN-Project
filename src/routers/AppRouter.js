@@ -17,7 +17,7 @@ import routes from '../helpers/routes.js'
 
 export default function AppRouter() {
     return (
-        <Router>
+       // <Router>
             <Layout>
                 <Switch>
                     <PublicRoute exact path ={routes.home} component={HomePage} />
@@ -26,11 +26,11 @@ export default function AppRouter() {
                     <PrivateRoute exact path ={routes.account} component={AccountPage} />
                     <PrivateRoute exact path ={routes.projects} component={ProjectsPage} />
                     <PrivateRoute exact path ={routes.project()} component={ProjectPage} />
-                    <PrivateRoute roles= {roles.admin} exact path ={routes.admin.users} component={UsersPage} />
+                    <PrivateRoute hasRole={roles.admin} exact path={routes.admin.users} component={UsersPage} />
                     
                     <PrivateRoute path ="*" component={NotFoundPage} />
                 </Switch>
             </Layout>
-        </Router>
+       // </Router>
     )
 }
