@@ -1,7 +1,36 @@
+import { Container, Row, Col, Card, Button } from "react-bootstrap";
+import UseAuth from "../auth/UseAuth";
+
+
 export default function AccountPage() {
+    const { user } = UseAuth();
+
     return (
-        <div>
-            <h1>AccountPage</h1>
-        </div>
+       <Container>
+            <Row>
+                <Col xs={12} className="text-center">
+                <img
+                    src="/img/female_avatar.svg"
+                    alt="Profile"
+                    style={{
+                        width: '200px',
+                        height: '200px',
+                        borderRadius: '50%',
+                        objectFit: 'cover'
+                    }}
+                    />
+                </Col>
+                <Col className="mt-4">
+                    <Card>
+                        <p className="text-center"><b>Nombre: </b>{user.name}</p>
+                        <p className="text-center"><b>Correo: </b>{user.email}</p>
+                        <p className="text-center"><b>Rol: </b>{user.role}</p>
+                        <Button variant="warning">Editar cuenta</Button>
+                        <Button variant="link">Cambiar contraseña</Button>
+                        <Button variant="link">Eliminar cuenta</Button>
+                    </Card>
+                </Col>
+            </Row>
+        </Container>
     )
 }

@@ -26,5 +26,5 @@ export default function AppRouter() {
                     <PrivateRoute hasRole={roles.admin} exact path={routes.admin.users} component={UsersPage} />
                     <PrivateRoute path ="*" component={NotFoundPage} />
                 </Switch>
-    )
+            )
 }
