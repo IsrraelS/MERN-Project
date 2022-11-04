@@ -1,4 +1,4 @@
-import { Navbar, Nav, NavDropdown} from 'react-bootstrap';
+import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 import routes from '../helpers/routes.js';
 import UseAuth from '../auth/UseAuth';

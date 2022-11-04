@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 
 //components
 import HomePage from "../pages/HomePage";
@@ -9,7 +9,6 @@ import ProjectsPage from "../pages/ProjectsPage";
 import ProjectPage from "../pages/ProjectPage";
 import UsersPage from "../pages/admin/UsersPage";
 import NotFoundPage from "../pages/NotFoundPage";
-import Layout from "../components/layouts/Layout";
 import PrivateRoute from "./PrivateRoute";
 import PublicRoute from "./PublicRoute";
 import roles from "../helpers/roles";
@@ -17,8 +16,6 @@ import routes from '../helpers/routes.js'
 
 export default function AppRouter() {
     return (
-       // <Router>
-            <Layout>
                 <Switch>
                     <PublicRoute exact path ={routes.home} component={HomePage} />
                     <PublicRoute exact path ={routes.login} component={LoginPage} />
@@ -27,10 +24,7 @@ export default function AppRouter() {
                     <PrivateRoute exact path ={routes.projects} component={ProjectsPage} />
                     <PrivateRoute exact path ={routes.project()} component={ProjectPage} />
                     <PrivateRoute hasRole={roles.admin} exact path={routes.admin.users} component={UsersPage} />
-                    
                     <PrivateRoute path ="*" component={NotFoundPage} />
                 </Switch>
-            </Layout>
-       // </Router>
     )
 }
