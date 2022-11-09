@@ -26,8 +26,8 @@ export default function AccountPage() {
                         <p className="text-center"><b>Correo: </b>{user.email}</p>
                         <p className="text-center"><b>Rol: </b>{user.role}</p>
                         <Button variant="warning">Editar cuenta</Button>
-                        <Button variant="link">Cambiar contraseña</Button>
-                        <Button variant="link">Eliminar cuenta</Button>
+                        <Button variant="link" className="mt-1">Cambiar contraseña</Button>
+                        <Button variant="link" className="mt-3 text-danger">Eliminar cuenta</Button>
                     </Card>
                 </Col>
             </Row>
