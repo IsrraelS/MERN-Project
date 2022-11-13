@@ -1,5 +1,5 @@
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
-import UseAuth from "../auth/UseAuth";
+import UseAuth from "../../auth/UseAuth";
 
 
 export default function AccountPage() {
@@ -7,7 +7,7 @@ export default function AccountPage() {
 
     return (
        <Container>
-            <Row>
+            <Row className="mt-4">
                 <Col xs={12} className="text-center">
                 <img
                     src="/img/female_avatar.svg"
@@ -21,7 +21,7 @@ export default function AccountPage() {
                     />
                 </Col>
                 <Col className="mt-4">
-                    <Card>
+                    <Card style= {{ maxWidth: '360' }} className="p4">
                         <p className="text-center"><b>Nombre: </b>{user.name}</p>
                         <p className="text-center"><b>Correo: </b>{user.email}</p>
                         <p className="text-center"><b>Rol: </b>{user.role}</p>
