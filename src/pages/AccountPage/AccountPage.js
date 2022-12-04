@@ -1,11 +1,13 @@
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import UseAuth from "../../auth/UseAuth";
+import DelateModal from "./components/DelateModal";
 
 
 export default function AccountPage() {
     const { user } = UseAuth();
 
     return (
+       <>
        <Container>
             <Row className="mt-4">
                 <Col xs={12} className="text-center">
@@ -32,5 +34,7 @@ export default function AccountPage() {
                 </Col>
             </Row>
         </Container>
-    )
+        <DelateModal/>
+        </>
+    );
 }
