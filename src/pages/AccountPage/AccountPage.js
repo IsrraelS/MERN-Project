@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import UseAuth from "../../auth/UseAuth";
 import DelateModal from "./components/DelateModal";
@@ -5,6 +6,10 @@ import DelateModal from "./components/DelateModal";
 
 export default function AccountPage() {
     const { user } = UseAuth();
+
+    const [isOpenDelateModal, setIsOpenDelateModal] = useState (false);
+    const openDelateModal = () => setIsOpenDelateModal (true)
+    const closeDelateModal = () => setIsOpenDelateModal (false)
 
     return (
        <>
@@ -29,12 +34,17 @@ export default function AccountPage() {
                         <p className="text-center"><b>Rol: </b>{user.role}</p>
                         <Button variant="warning">Editar cuenta</Button>
                         <Button variant="link" className="mt-1">Cambiar contraseña</Button>
-                        <Button variant="link" className="mt-3 text-danger">Eliminar cuenta</Button>
+                        <Button variant="link" className="mt-3 text-danger"
+                            onClick={openDelateModal}
+                        >Eliminar cuenta</Button>
                     </Card>
                 </Col>
             </Row>
         </Container>
-        <DelateModal/>
+        <DelateModal
+            isOpen={isOpenDelateModal}
+            close={closeDelateModal}
+        />
         </>
     );
 }

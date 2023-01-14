@@ -1,8 +1,18 @@
 import { Modal, Alert, Button } from "react-bootstrap"
+import UseAuth from "../../../auth/UseAuth"
 
-export default function DelateModal() {
+export default function DelateModal({isOpen, close}) {
+
+        const { logout } = UseAuth()
+
+        const handleDelate = () => {
+            // Peticion http
+            // close()
+            logout();
+        }
+
     return (
-        <Modal show={true}>
+        <Modal show={isOpen} onHide={close}>
             <Modal.Header closeButton>
                 <Modal.Title>Eliminar cuenta</Modal.Title>
             </Modal.Header>
@@ -13,8 +23,8 @@ export default function DelateModal() {
                 </Alert>
             </Modal.Body>
             <Modal.Footer>
-                <Button variant="secondary">Cancelar</Button>
-                <Button variant="danger">Eliminar mi cuenta</Button>
+                <Button variant="secondary" onClick={close}>Cancelar</Button>
+                <Button variant="danger" onClick={handleDelate}>Eliminar mi cuenta</Button>
             </Modal.Footer>
         </Modal>
     )
