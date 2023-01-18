@@ -1,15 +1,20 @@
 import { useState } from "react";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import UseAuth from "../../auth/UseAuth";
+import ChangePasswordModal from "./components/ChangePasswordModal";
 import DelateModal from "./components/DelateModal";
 
 
 export default function AccountPage() {
     const { user } = UseAuth();
 
-    const [isOpenDelateModal, setIsOpenDelateModal] = useState (false);
-    const openDelateModal = () => setIsOpenDelateModal (true)
-    const closeDelateModal = () => setIsOpenDelateModal (false)
+    const [isOpenDelateModal, setIsOpenDelateModal] = useState(false);
+    const openDelateModal = () => setIsOpenDelateModal(true);
+    const closeDelateModal = () => setIsOpenDelateModal(false);
+
+    const [isOpenChangePasswordModal, setIsOpenChangePasswordModal] = useState (false);
+    const openChangePasswordModal = () => setIsOpenChangePasswordModal (true)
+    const closeChangePasswordModal = () => setIsOpenChangePasswordModal (false)
 
     return (
        <>
@@ -32,8 +37,11 @@ export default function AccountPage() {
                         <p className="text-center"><b>Nombre: </b>{user.name}</p>
                         <p className="text-center"><b>Correo: </b>{user.email}</p>
                         <p className="text-center"><b>Rol: </b>{user.role}</p>
+
                         <Button variant="warning">Editar cuenta</Button>
-                        <Button variant="link" className="mt-1">Cambiar contraseña</Button>
+                        <Button variant="link" className="mt-1"
+                            onClick={openChangePasswordModal}
+                        >Cambiar contraseña</Button>
                         <Button variant="link" className="mt-3 text-danger"
                             onClick={openDelateModal}
                         >Eliminar cuenta</Button>
@@ -44,6 +52,10 @@ export default function AccountPage() {
         <DelateModal
             isOpen={isOpenDelateModal}
             close={closeDelateModal}
+        />
+        <ChangePasswordModal
+            isOpen={isOpenChangePasswordModal}
+            close={closeChangePasswordModal}
         />
         </>
     );
