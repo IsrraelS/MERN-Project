@@ -1,16 +1,9 @@
-import { Modal, Alert, Button, Form } from "react-bootstrap"
-import UseAuth from "../../../auth/UseAuth"
+import { Modal, Alert, Button, Form, FormText } from "react-bootstrap"
+import { useForm } from 'react-hook-form'
 
 export default function ChangePasswordModal({isOpen, close}) {
         const{ register, handleSubmit, formState: { errors } } = useForm();
 
-        const { logout } = UseAuth()
-
-        const handleDelate = () => {
-            // Peticion http
-            // close()
-            logout();
-        }
         const onSubmit = (formData) => {
             console.log(formData)
         } 
@@ -19,7 +12,6 @@ export default function ChangePasswordModal({isOpen, close}) {
         <Modal show={true} onHide={close}>
             <Modal.Header closeButton>
                 <Modal.Title>Eliminar cuenta</Modal.Title>
-            </Modal.Header>
             </Modal.Header> 
             <Modal.Body>
                 <Form onSubmit={handleSubmit(onSubmit)}>
@@ -57,7 +49,6 @@ export default function ChangePasswordModal({isOpen, close}) {
             </Modal.Body>
             <Modal.Footer>
                 <Button variant="secondary" onClick={close}>Cancelar</Button>
-                <Button variant="primary" onClick={handleDelate}>Actualizar Contraseña</Button>
                 <Button variant="primary" onClick={handleSubmit(onSubmit)}>Actualizar Contraseña</Button>
             </Modal.Footer>
         </Modal>
