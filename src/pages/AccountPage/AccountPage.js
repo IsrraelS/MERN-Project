@@ -1,20 +1,14 @@
-import { useState } from "react";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import UseAuth from "../../auth/UseAuth";
+import useModal from "../../hooks/useModal";
 import ChangePasswordModal from "./components/ChangePasswordModal";
 import DelateModal from "./components/DelateModal";
 
 
 export default function AccountPage() {
     const { user } = UseAuth();
-
-    const [isOpenDelateModal, setIsOpenDelateModal] = useState(false);
-    const openDelateModal = () => setIsOpenDelateModal(true);
-    const closeDelateModal = () => setIsOpenDelateModal(false);
-
-    const [isOpenChangePasswordModal, setIsOpenChangePasswordModal] = useState (false);
-    const openChangePasswordModal = () => setIsOpenChangePasswordModal (true)
-    const closeChangePasswordModal = () => setIsOpenChangePasswordModal (false)
+    const [isOpenDelateModal, openDelateModal, closeDelateModal] = useModal();
+    const [isOpenChangePasswordModal, openChangePasswordModal, closeChangePasswordModal] = useModal();
 
     return (
        <>

@@ -1,15 +1,24 @@
+import { useEffect } from "react";
 import { Modal, Alert, Button, Form, FormText } from "react-bootstrap"
 import { useForm } from 'react-hook-form'
+import changePasswordResolver from '../../../validations/changePasswordResolver';
 
 export default function ChangePasswordModal({isOpen, close}) {
-        const{ register, handleSubmit, formState: { errors } } = useForm();
+        const{ register, handleSubmit, formState: { errors }, reset } = 
+        useForm({ resolver: changePasswordResolver });
 
         const onSubmit = (formData) => {
-            console.log(formData)
-        } 
+            alert("cambio de password")
+        }
+        
+        useEffect(() => { 
+            if(!isOpen){
+                reset()
+            }
+        }, [isOpen])
 
     return (
-        <Modal show={true} onHide={close}>
+        <Modal show={isOpen} onHide={close}>
             <Modal.Header closeButton>
                 <Modal.Title>Eliminar cuenta</Modal.Title>
             </Modal.Header> 
@@ -18,32 +27,17 @@ export default function ChangePasswordModal({isOpen, close}) {
                     <Form.Group>
                         <Form.Label>Nuevo Password</Form.Label>
                         <Form.Control
-                            type="text"
                             placeholder="Escribe tu nombre" 
-                            {...register("name")}
+                            {...register("password")}
+                            type="password"
                         />
-                        {errors?.name && (
+                        {errors?.password && (
                             <FormText>
                                 <Alert variant="danger">
-                                    {errors?.name.message}
+                                    {errors.password.message}
                                 </Alert>
                             </FormText>
-                        )}
-                    </Form.Group>
-                    <Form.Group>
-                        <Form.Label>Email</Form.Label>
-                        <Form.Control
-                            type="email"
-                            placeholder="Escribe tu correo electronico" 
-                            {...register("email")}
-                        />
-                        {errors?.email && (
-                            <FormText>
-                                <Alert variant="danger">
-                                    {errors?.email.message}
-                                </Alert>
-                            </FormText>
-                        )}
+                            )}
                     </Form.Group>
                 </Form>
             </Modal.Body>
@@ -54,3 +48,20 @@ export default function ChangePasswordModal({isOpen, close}) {
         </Modal>
     )
 }
+
+/*<Form>
+<Form.Group>
+    <Form.Label>Email</Form.Label>
+    <Form.Control
+        placeholder="Escribe tu correo electronico" 
+        {...register("email")}
+    />
+    {errors?.email && (
+        <FormText>
+            <Alert variant="danger">
+                {errors?.email.message}
+            </Alert>
+        </FormText>
+    )}
+</Form.Group>
+</Form>*/
